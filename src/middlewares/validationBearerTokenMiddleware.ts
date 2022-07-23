@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { verifyToken } from '../utils/JWT.js';
 import bearerAuthorizationSchema from '../schemas/bearerAuthorizationSchema.js';
 
-import AppError from '../config/error';
+import AppError from '../config/error.js';
 
 const validateBearerToken = (
 	req: Request,
