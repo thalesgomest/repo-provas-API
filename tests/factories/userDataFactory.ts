@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { CreateUserData } from '../../types/userInterface';
+import { CreateUserData } from '../../src/types/userInterface';
 
 const userDataFactory = (): CreateUserData => {
 	return {

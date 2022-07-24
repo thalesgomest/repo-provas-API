@@ -1,5 +1,6 @@
 import prisma from '../src/config/database.js';
 import { bcryptEncryptData } from '../src/utils/bcrypt.js';
+import { faker } from '@faker-js/faker';
 
 const main = async () => {
 	const user = [
@@ -99,6 +100,34 @@ const main = async () => {
 			disciplineId: 6,
 		},
 	];
+
+	const tests = [
+		{
+			name: 'Prova HTML e CSS',
+			pdfUrl: faker.internet.url(),
+			categoryId: 1,
+			teacherDisciplineId: 1,
+		},
+		{
+			name: 'Prova JavaScript',
+			pdfUrl: faker.internet.url(),
+			categoryId: 2,
+			teacherDisciplineId: 2,
+		},
+		{
+			name: 'Projeto Planejamento',
+			pdfUrl: faker.internet.url(),
+			categoryId: 1,
+			teacherDisciplineId: 5,
+		},
+		{
+			name: 'Prática Autoconfiança',
+			pdfUrl: faker.internet.url(),
+			categoryId: 2,
+			teacherDisciplineId: 6,
+		},
+	];
+
 	await prisma.user.createMany({ data: user, skipDuplicates: true });
 	await prisma.term.createMany({ data: terms, skipDuplicates: true });
 	await prisma.category.createMany({
@@ -117,6 +146,7 @@ const main = async () => {
 		data: teachersDisciplines,
 		skipDuplicates: true,
 	});
+	await prisma.test.createMany({ data: tests, skipDuplicates: true });
 };
 
 main()

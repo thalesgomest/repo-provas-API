@@ -1,6 +1,6 @@
-import prisma from '../../config/database.js';
-import { CreateUserData } from '../../types/userInterface.js';
-import { bcryptEncryptData } from '../../utils/bcrypt.js';
+import prisma from '../../src/config/database.js';
+import { CreateUserData } from '../../src/types/userInterface.js';
+import { bcryptEncryptData } from '../../src/utils/bcrypt.js';
 
 const userFactory = (user: CreateUserData) => {
 	return prisma.user.create({

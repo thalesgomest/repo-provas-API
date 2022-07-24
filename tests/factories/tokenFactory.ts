@@ -1,6 +1,6 @@
 import userDataFactory from './userDataFactory';
 import userFactory from './userFactory';
-import { generateToken } from '../../utils/JWT.js';
+import { generateToken } from '../../src/utils/JWT.js';
 
 const tokenFactory = async () => {
 	const user = userDataFactory();
