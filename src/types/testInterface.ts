@@ -10,3 +10,9 @@ export type CreateTestData = Omit<
 	discipline: string;
 	teacher: string;
 };
+
+export interface Filter {
+	groupBy: 'disciplines' | 'teachers';
+	teacher?: string;
+	discipline?: string;
+}

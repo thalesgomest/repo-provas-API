@@ -13,4 +13,6 @@ testRouter.post(
 	testController.insert
 );
 
+testRouter.get('/tests', testController.find);
+
 export default testRouter;

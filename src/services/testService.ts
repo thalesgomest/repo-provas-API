@@ -1,4 +1,5 @@
-import { CreateTestData } from '../types/testInterface';
+import { CreateTestData, Filter } from '../types/testInterface';
+
 import queryFactory from '../factories/queryFactory.js';
 import * as teacherDisciplineRepository from '../repositories/teacherAndDisciplineRepository.js';
 import * as testRepository from '../repositories/testRepository.js';
@@ -18,6 +19,14 @@ export const insert = async (createTestData: CreateTestData) => {
 	return { id, name, pdfUrl };
 };
 
+export const find = async (filter: Filter) => {
+	if (filter.groupBy === 'disciplines') {
+		return testRepository.getTestsByDiscipline(filter.discipline);
+	} else if (filter.groupBy === 'teachers') {
+		return testRepository.getTestsByTeachers(filter.teacher);
+	}
+};
+
 const ensureElegibilityToCreateTest = async (
 	createTestData: CreateTestData
 ) => {
@@ -30,7 +39,7 @@ const ensureElegibilityToCreateTest = async (
 		throw new AppError(
 			'Category not found',
 			404,
-			'Eategory not found',
+			'Category not found',
 			'Ensure category exists'
 		);
 	}

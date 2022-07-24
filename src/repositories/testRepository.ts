@@ -6,3 +6,50 @@ export const create = async (testData: TestData) => {
 		data: testData,
 	});
 };
+export const getTestsByDiscipline = (discipline: string) => {
+	return prisma.term.findMany({
+		where: {
+			disciplines: {
+				some: {
+					AND: {
+						name: discipline,
+						teacherDisciplines: { some: { tests: { some: {} } } },
+					},
+				},
+			},
+		},
+		include: {
+			disciplines: {
+				include: {
+					teacherDisciplines: {
+						include: {
+							teacher: true,
+							tests: {
+								include: {
+									category: true,
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+	});
+};
+
+export const getTestsByTeachers = (teacher: string) => {
+	return prisma.teacherDiscipline.findMany({
+		where: {
+			AND: { teacher: { name: teacher }, tests: { some: {} } },
+		},
+		include: {
+			teacher: true,
+			discipline: true,
+			tests: {
+				include: {
+					category: true,
+				},
+			},
+		},
+	});
+};
