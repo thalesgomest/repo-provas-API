@@ -1,4 +1,5 @@
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
+
 export default {
 	preset: 'ts-jest',
 	testEnvironment: 'node',
@@ -8,6 +9,7 @@ export default {
 			useESM: true,
 		},
 	},
+	verbose: true,
 	moduleNameMapper: {
 		'^(\\.{1,2}/.*)\\.js$': '$1',
 	},
